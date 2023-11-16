@@ -2,7 +2,6 @@ import socket
 
 from .task import Task
 
-UDP_IP = "192.168.1.100"
 UDP_PORT = 5005
 
 
@@ -10,7 +9,9 @@ class ReceiverTask(Task):
     def __init__(self):
         super().__init__()
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Internet  # UDP
-        self.sock.bind((UDP_IP, UDP_PORT))
+        hostname = socket.gethostname()
+        ip_address = socket.gethostbyname(hostname)
+        self.sock.bind((ip_address, UDP_PORT))
 
     def _run(self) -> None:
         while True:
