@@ -19,7 +19,8 @@ with open("example_file.txt", mode="rb") as f:
             i = 0
         chunk.append(byte)
         i += 1
-    chunk_list.append(deepcopy(chunk))
+    if i != 0:
+        chunk_list.append(deepcopy(chunk))
 
 
 for chunk in chunk_list:
