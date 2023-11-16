@@ -18,8 +18,12 @@ class SenderTask(Task):
 
     def _run(self) -> None:
         while True:
-            msg = bytes(input(), "utf-8")
-            self.sock.sendto(msg, (self.target_ip, UDP_PORT))
+            command = input()
+            msg = bytes(command, "utf-8")
+            if "file" in command:
+                print("Przesyłam plik")
+            else:
+                self.sock.sendto(msg, (self.target_ip, UDP_PORT))
 
 
 if __name__ == "__main__":
