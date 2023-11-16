@@ -1,15 +1,17 @@
 import socket
+import time
 from copy import deepcopy
 
 from .task import Task
 
 UDP_PORT = 5005
-CHUNK_SIZE = 16
+CHUNK_SIZE = 1_000
+
 
 def get_chunks():
     chunk_list: list[bytearray] = []
 
-    with open("example_file.txt", mode="rb") as f:
+    with open("albatros.png", mode="rb") as f:
         data = f.read()
 
         i = 0
@@ -45,12 +47,14 @@ class SenderTask(Task):
             if "!file" in command:
                 chunks = get_chunks()
 
-                self.sock.sendto(b'!start', (self.target_ip, UDP_PORT))
+                self.sock.sendto(b"!start", (self.target_ip, UDP_PORT))
 
                 for chunk in chunks:
+                    time.sleep(0.01)
                     self.sock.sendto(chunk, (self.target_ip, UDP_PORT))
 
-                self.sock.sendto(b'!stop', (self.target_ip, UDP_PORT))
+                self.sock.sendto(b"!stop", (self.target_ip, UDP_PORT))
+                print("Plik został wysłany")
             else:
                 self.sock.sendto(msg, (self.target_ip, UDP_PORT))
 
