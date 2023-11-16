@@ -4,6 +4,7 @@ from .task import Task
 
 UDP_PORT = 5005
 
+
 class SenderTask(Task):
     def __init__(self, target_ip):
         super().__init__()
@@ -15,7 +16,7 @@ class SenderTask(Task):
 
     def _run(self) -> None:
         while True:
-            msg = bytes(input("Wpisz wiadomość: "), "utf-8")
+            msg = bytes(input(), "utf-8")
             self.sock.sendto(msg, (self.target_ip, UDP_PORT))
 
 
