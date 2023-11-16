@@ -14,4 +14,4 @@ class ReceiverTask(Task):
     def _run(self) -> None:
         while True:
             data, addr = self.sock.recvfrom(1024)  # buffer size is 1024 bytes
-            print("\n->: %s" % str(data)[2:-1])
+            print("-> %s" % str(data)[2:-1])

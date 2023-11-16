@@ -14,6 +14,8 @@ class SenderTask(Task):
 
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Internet  # UDP
 
+        print("ZACZNIJ PISAĆ:\n")
+
     def _run(self) -> None:
         while True:
             msg = bytes(input(), "utf-8")
