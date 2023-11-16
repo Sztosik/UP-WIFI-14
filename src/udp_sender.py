@@ -8,10 +8,10 @@ UDP_PORT = 5005
 CHUNK_SIZE = 1_000
 
 
-def get_chunks():
+def get_chunks(file_name):
     chunk_list: list[bytearray] = []
 
-    with open("albatros.png", mode="rb") as f:
+    with open(file_name, mode="rb") as f:
         data = f.read()
 
         i = 0
@@ -45,7 +45,8 @@ class SenderTask(Task):
             command = input()
             msg = bytes(command, "utf-8")
             if "!file" in command:
-                chunks = get_chunks()
+                name = input("Podaj nazwe pliku: ")
+                chunks = get_chunks(name)
 
                 self.sock.sendto(b"!start", (self.target_ip, UDP_PORT))
 
