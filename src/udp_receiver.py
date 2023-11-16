@@ -28,5 +28,6 @@ class ReceiverTask(Task):
 
                 file_name = input("Nazwa pliku do zapisania: ")
                 merge_chunks(received_data, file_name)
+                print("zapisano plik")
             else:
                 print("-> %s" % str(data)[2:-1])
