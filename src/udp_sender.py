@@ -1,6 +1,6 @@
 import socket
 
-from task import Task
+from .task import Task
 
 UDP_IP = "192.168.1.101"
 UDP_PORT = 5005
