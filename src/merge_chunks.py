@@ -4,6 +4,6 @@ def merge_chunks(chunk_list, output_file):
         for byte in chunk:
             file_data.append(byte)
 
-    file = open(f"{output_file}.txt", "wb")
+    file = open(f"{output_file}", "wb")
     file.write(file_data)
     file.close()
